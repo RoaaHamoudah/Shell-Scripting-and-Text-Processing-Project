@@ -1,0 +1,201 @@
+Full Name: Roaa Hazem Hamoudah
+Registration ID: 1210738
+
+rere-h37@rere-h37-VirtualBox:~$ mkdir u1210738\ proj2
+rere-h37@rere-h37-VirtualBox:~$ mkdir u1210738\ proj2/files
+rere-h37@rere-h37-VirtualBox:~$ touch u1210738\ proj2/Q1_answers u1210738\ proj2/Q1_images u1210738\ proj2/Q2_answers u1210738\ proj2/Q2_images
+rere-h37@rere-h37-VirtualBox:~$ touch u1210738\ proj2/files/character_output.txt u1210738\ proj2/files/directories.txt u1210738\ proj2/files/errors.txt u1210738\ proj2/files/6o_120_books.txt u1210738\ proj2/files/2000_2010_books.txt u1210738\ proj2/files/count_Smith.txt
+rere-h37@rere-h37-VirtualBox:~$ tree u1210738\ proj2
+-------------------------------------------------------------------------------------------------------------------------------------
+3.1 Part One:
+
+Q1:
+
+rere-h37@rere-h37-VirtualBox:~$ echo Hostname: $HOSTNAME
+rere-h37@rere-h37-VirtualBox:~$ echo Username: $USER
+rere-h37@rere-h37-VirtualBox:~$ echo Shell: $SHELL
+rere-h37@rere-h37-VirtualBox:~$ echo Home Directory: $HOME
+-------------------------------
+
+Q2:
+
+I tried doing this on .bash_profile using this way (But it wasn't available 
+every time I logged in or opened a new shell):
+
+rere-h37@rere-h37-VirtualBox:~$ cp .bash_profile .save_bash_profile
+rere-h37@rere-h37-VirtualBox:~$ vi .bash_profile
+
+Then we go to the .bash_profile file and write the command for the alias, which is:
+alias mypass="cat /etc/passwd"
+
+After writing inside the .bash_profile
+I saved the file and closed it by pressing 'Esc' , then typing ':wq' , then pressing
+'enter'.
+
+I applied the changes by sourcing the file (By typing the following in the terminal):
+rere-h37@rere-h37-VirtualBox:~$ source ~/.bash_profile
+
+Then, we can use the alias by typing its name in the terminal:
+rere-h37@rere-h37-VirtualBox:~$ mypass
+
+which will give us the result as if we wrote : cat /etc/passwd
+
+--> Because it was not available every time I logged in or opened a new shell
+I made it on .bashrc (like this): 
+
+rere-h37@rere-h37-VirtualBox:~$ vi .bashrc 
+
+Then I wrote this alias inside .bashrc file:
+alias mypass="cat /etc/passwd"
+
+Then, we can use the alias by typing its name in the terminal:
+rere-h37@rere-h37-VirtualBox:~$ mypass
+
+--> Note: Pictures of both cases are attached.
+-------------------------------
+
+Q3:
+
+rere-h37@rere-h37-VirtualBox:~$ ps -f | sort -k2 -n
+
+-------------------------------
+
+Q4:
+
+1) What is the difference between nice and renice commands?
+
+-The nice command is used to start a new process with a specified priority.
+
+-By default, processes start with a nice value of 0.
+
+-You can increase the nice value to lower the process's priority, making it "nicer"
+to other processes by consuming less CPU time.
+
+-If you give a process a higher priority, the kernel will allocate more CPU time to that process.In contrast, if you increase the nice value, the process will receive less CPU time,
+making it "nicer" to other processes.
+
+--------
+-The renice command is used to change the priority of an already running process.
+this allows you to adjust the priority of a process that is currently active.
+
+-Linux kernel schedules the process and allocates CPU time accordingly for each of them.
+By using the renice command, you can modify the priority of a running process, which in turn
+affects the amount of CPU time allocated to it.
+
+-In summary, the renice command provides a way to dynamically adjust the priority of a 
+running process, giving you more control over how system resources are allocated.
+
+------
+
+2) Give a usage example for each of them:
+
+First I do this: (to display a long list of currently running processes) 
+rere-h37@rere-h37-VirtualBox:~$ ps -l 
+
+--> Example of nice command:
+rere-h37@rere-h37-VirtualBox:~$ nice -6 ps -l
+
+--> Example of renice command:
+rere-h37@rere-h37-VirtualBox:~$ renice +5 4589
+
+Then I run (ps -l) again to see the changes that occurred after using the renice command: 
+rere-h37@rere-h37-VirtualBox:~$ ps -l
+ 
+-------------------------------
+
+Q5:
+
+The command is:
+rere-h37@rere-h37-VirtualBox:~$ kill -15 $(jobs -p)
+
+--> Below is an example of how I tried it and used it:
+First: inside 'vi fore' file I wrote the following:
+
+while true
+do  
+echo running > my1
+done
+
+After writing inside the 'fore' file, I saved the file and closed it by pressing 'Esc', then
+typing ':wq', then pressing 'enter'
+
+Then on the terminal, I created 6 jobs on foreground, Using the following:
+rere-h37@rere-h37-VirtualBox:~$ ./fore
+rere-h37@rere-h37-VirtualBox:~$ ./fore
+rere-h37@rere-h37-VirtualBox:~$ ./fore
+rere-h37@rere-h37-VirtualBox:~$ ./fore
+rere-h37@rere-h37-VirtualBox:~$ ./fore
+rere-h37@rere-h37-VirtualBox:~$ ./fore
+
+ 
+I used command 'jobs' to display jobs like this:
+rere-h37@rere-h37-VirtualBox:~$ jobs
+
+After that, I moved these jobs to the backgroung like this:
+rere-h37@rere-h37-VirtualBox:~$ bg %1
+rere-h37@rere-h37-VirtualBox:~$ bg %2
+rere-h37@rere-h37-VirtualBox:~$ bg %3
+rere-h37@rere-h37-VirtualBox:~$ bg %4
+rere-h37@rere-h37-VirtualBox:~$ bg %5
+rere-h37@rere-h37-VirtualBox:~$ bg %6
+
+I used the command 'jobs' to display jobs like this:
+rere-h37@rere-h37-VirtualBox:~$ jobs
+
+After that, I used this command:
+rere-h37@rere-h37-VirtualBox:~$ jobs -p
+
+(This command lists the process IDs (PIDs) of all backgroung jobs in the current shell)
+
+Then this command that terminates all these background processes at once using the kill command:
+rere-h37@rere-h37-VirtualBox:~$ kill -15 $(jobs -p)
+
+-------------------------------
+
+Q6:
+
+The command is:
+rere-h37@rere-h37-VirtualBox:~$ pkill -9 xeyes
+
+First, I installed the xeyes command
+Then, in the terminal, I run the xeyes command about 30 times in the background
+rere-h37@rere-h37-VirtualBox:~$ xeye&
+(30 times)
+
+
+Then I used the 'jobs' command to view jobs like this:
+rere-h37@rere-h37-VirtualBox:~$ jobs
+
+Then the command that kills all xeyes processes in one command:
+rere-h37@rere-h37-VirtualBox:~$ pkill -9 xeyes
+
+Then I used the 'jobs' command to view jobs like this (to make sure they are all killed): 
+rere-h37@rere-h37-VirtualBox:~$ jobs
+
+ 
+-------------------------------------------------------------------------------------------------------------------------------------
+
+3.2 Part Two:
+
+Q1:
+
+rere-h37@rere-h37-VirtualBox:~$ find /dev -type c > u1210738\ proj2/files/character_output.txt 
+
+Explanation:
+find /dev : starts searching from the /dev directory
+-type c : specifies that we're looking for character divice files.
+> u1210738\ proj2/files/character_output.txt : redirects the output to the specified file.
+
+-------------------------------
+
+Q2:
+
+rere-h37@rere-h37-VirtualBox:~$ find / -type d -print > u1210738\ proj2/files/directories.txt 2> u1210738\ proj2/files/errors.txt
+
+-------------------------------
+
+Q3:
+
+rere-h37@rere-h37-VirtualBox:~$ find /etc -type d -name '[e-l]*' | wc -l
+
+------------------------------------------------------------------------------------------------------------------------------------

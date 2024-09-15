@@ -1,0 +1,57 @@
+Full Name: Roaa Hazem Hamoudah.
+Registration ID: 1210738
+
+
+Q1:
+
+rere-h37@rere-h37-VirtualBox:~$ grep -i Chris books.txt | cut -d, -f2 | tr "a-z" "A-Z"
+
+---------------------------------------------------------------------------------
+
+Q2:
+
+rere-h37@rere-h37-VirtualBox:~$ grep -i science books.txt | sort -t, -k1,1nr | tr "A-Z" "a-z"
+
+---------------------------------------------------------------------------------
+
+Q3:
+
+rere-h37@rere-h37-VirtualBox:~$ head -80 books.txt | tail -31 | cut -d, -f2 | tr "A-Z" "a-z" |sort > u1210738\ proj2/files/50_80_books.txt
+
+---------------------------------------------------------------------------------
+Q4:
+
+rere-h37@rere-h37-VirtualBox:~$ cut -d, -f1,2,5,6 books.txt | sort -nr -t, -k1 | cut -d, -f2 > u1210738\ proj2/files/2000_2010_books.txt
+
+---------------------------------------------------------------------------------
+Q5:
+
+rere-h37@rere-h37-VirtualBox:~$ cut -d',' -f2,4 books.txt | grep ,[SK] | cut -d, -f1
+
+---------------------------------------------------------------------------------
+
+Q6:
+
+rere-h37@rere-h37-VirtualBox:~$ cut -d, -f5,6 books.txt | grep -i 'Fantasy' | grep -E '^Fantasy,19[0-7][0-9]'
+
+---------------------------------------------------------------------------------
+
+Q7:
+
+rere-h37@rere-h37-VirtualBox:~$ cut -d',' -f2,3,5,6 books.txt | grep -v Romance | grep -E '^([A-N]).*,201[6-9]$' | cut -d',' -f1
+
+---------------------------------------------------------------------------------
+
+Q8:
+
+rere-h37@rere-h37-VirtualBox:~$ grep -i Smith books.txt | wc -l > u1210738\ proj2/files/count_Smith.txt
+
+---------------------------------------------------------------------------------
+
+Q9:
+
+rere-h37@rere-h37-VirtualBox:~$ cut -d, -f5,6 books.txt | grep '5$' | grep Technology | sed 's/Technology/Memoir/i'
+
+---------------------------------------------------------------------------------
+
+
